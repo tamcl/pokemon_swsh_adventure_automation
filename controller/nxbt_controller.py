@@ -1,6 +1,7 @@
 import socket
 import json
 import nxbt
+import sys
 
 
 def read_credential(path):
@@ -61,3 +62,4 @@ if __name__ == '__main__':
         if macro == 'quit()':
             quit_v = False
         run_macro(nx, nxci, macro)
+    sys.exit()
