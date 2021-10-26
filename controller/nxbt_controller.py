@@ -6,7 +6,6 @@ import nxbt
 def read_credential(path):
     with open(path, 'r') as f:
         content = f.read()
-    print(content)
     cred_dict = json.loads(content)
     return cred_dict['host'], cred_dict['port']
 
@@ -41,6 +40,7 @@ if __name__ == '__main__':
     ss = bind_socket((host, port))
 
     nx, nxci = connect_nx()
+    print('Await for macro commands...')
 
     quit_v = True
 
