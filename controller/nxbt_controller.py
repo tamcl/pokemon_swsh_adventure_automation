@@ -32,7 +32,10 @@ def connect_nx():
 
 
 def run_macro(tnx, controller_index, tmacro):
-    tnx.macro(controller_index, tmacro)
+    try:
+        tnx.macro(controller_index, tmacro)
+    except Exception as e:
+        print('Error occur in run macro:\n{}'.format(e))
 
 
 if __name__ == '__main__':
@@ -56,10 +59,10 @@ if __name__ == '__main__':
             if not data:
                 break
             macro += data
-        cs.send('accepted macro:\n{}'.format(macro))
+            cs.send('accepted macro:\n{}'.format(macro).encode())
         cs.close()
         print('RUN:\n{}'.format(macro))
         if macro == 'quit()':
             quit_v = False
+            sys.exit()
         run_macro(nx, nxci, macro)
-    sys.exit()
